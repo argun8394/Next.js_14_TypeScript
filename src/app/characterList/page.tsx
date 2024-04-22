@@ -1,43 +1,73 @@
-"use client"
+"use client";
 import axios from "axios";
 import CharacterCard from "../../components/characterCard/CharacterCard";
-// import styles from './characterList.module.css'
-import CharacterList from "@/components/characterList/CharacterList";
+import styles from "./characterList.module.css";
+import { useEffect, useState } from "react";
+import Pagination from "@/components/pagination/Pagination";
+import Search from "@/components/search/Search";
 
-
-async function getData(offset:any) {
-  const url = `https://gateway.marvel.com/v1/public/characters?ts=1&offset=${offset}&apikey=3579453ac950b98ceed0d384978790d4&hash=d578505f73327bda014280c1f938d0d5`;
-  const res = await axios.get(url);
-
-  if (!res.status) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.data.data.results;
-}
-
-const FilmList = async () => {
-// const [offset,setOffset] = useState(0)
-  const offset = 30
-
-  const characters = await getData(offset);
-  console.log('xxxxxxxxxxxxxxxxxxxx',characters)
-
-
-  return (
-    <div >
-      {/* <CharacterList {...characters.results}/> */}
-{characters.map(
-        (character: { id: number;  }) => (
-         <div className=''  key={character.id}>
-           <CharacterCard
-            {...character}
-          />
-         </div>
-        )
-      )}      
-    </div>
-  );
+type Character = {
+  id?: number;
+  name?: string;
 };
 
-export default FilmList;
+export default function CharacterList({
+  searchParams,
+}: {
+  searchParams?: { nameStartsWith?: string; page?: string; limit?: string };
+}) {
+  const [characters, setCharacters] = useState<Character[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [totalPages, setTotalPages] = useState(0);
+  // const [offset, setOffset] = useState(0);
+
+  const nameStartsWith = searchParams?.nameStartsWith || "A";
+  const currentPage = Number(searchParams?.page) || 1;
+  const limit = Number(searchParams?.limit) || 18;
+  const offset = (currentPage - 1) * limit;
+  // const totalPages = 2;
+
+  // let total = null;
+
+  const getData = async () => {
+    try {
+      setLoading(true);
+      const url = `https://gateway.marvel.com/v1/public/characters?ts=1&nameStartsWith=${nameStartsWith}&offset=${offset}&limit=${limit}&apikey=3579453ac950b98ceed0d384978790d4&hash=d578505f73327bda014280c1f938d0d5`;
+
+      const res = await axios.get(url);
+      // console.log(res.data);
+
+      if (res) {
+        const { results, total } = res.data.data;
+        setCharacters(results || []);
+        setTotalPages(Math.ceil(total / limit));
+        console.log(res.data.data.total);
+      }
+    } catch (err) {
+      console.log("Failed to fetch data");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    setTimeout(() => getData(), 1000);
+  }, [nameStartsWith, offset]);
+
+  return (
+    <div className="flex flex-col justify-center items-center gap-6">
+      {loading && <div>Loading........</div>}
+      {!loading && (
+        <div className={styles.container}>
+          <Search />
+          {characters.map((character) => (
+            <div key={character.id} className={styles.character}>
+              <CharacterCard {...character} />
+            </div>
+          ))}
+          <Pagination totalPages={totalPages} currentPage={currentPage} />
+        </div>
+      )}
+    </div>
+  );
+}
