@@ -42,6 +42,7 @@ export default function CharacterList({
         setCharacters(results || []);
         setTotalPages(Math.ceil(total / limit));
         console.log(res.data.data.total);
+        console.log(results);
       }
     } catch (err) {
       console.log("Failed to fetch data");
@@ -65,7 +66,9 @@ export default function CharacterList({
               <CharacterCard {...character} />
             </div>
           ))}
-          <Pagination totalPages={totalPages} currentPage={currentPage} />
+          {characters.length > limit && (
+            <Pagination totalPages={totalPages} currentPage={currentPage} />
+          )}
         </div>
       )}
     </div>

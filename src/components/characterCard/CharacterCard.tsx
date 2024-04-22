@@ -3,13 +3,13 @@ import Link from "next/link";
 import styles from "./characterCard.module.css";
 const CharacterCard = (character: any) => {
   return (
-    <div className="mb-4 relative hover:opacity-40">
+    <div className="mb-4 relative hover:opacity-40 rounded-lg">
       <Link href={`/characterList/${character.id}`}>
         <div className={styles.imgContainer}>
           <Image
             src={`${character?.thumbnail.path}.${character?.thumbnail.extension}`}
             fill
-            className={styles.img}
+            className={`${styles.img} rounded-lg`}
             alt=""
           />
         </div>
