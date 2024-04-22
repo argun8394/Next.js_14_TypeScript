@@ -24,7 +24,6 @@ const CharacterDetail =async ({params}:CharacterDetailProps ) => {
     const {slug} = params;
 
   const character = await getData(slug);
-  console.log('sss',character.thumbnail)
 
   return (
     <div>
