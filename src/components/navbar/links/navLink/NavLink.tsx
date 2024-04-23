@@ -6,13 +6,13 @@ import styles from "./navLink.module.css";
 import { usePathname } from "next/navigation";
 
 interface NavLinkProps {
-    item: {
-      title: string;
-      path: string;
-    };
-  }
+  item: {
+    title: string;
+    path: string;
+  };
+}
 
-  const NavLink: React.FC<NavLinkProps> = ({ item }) => {
+const NavLink: React.FC<NavLinkProps> = ({ item }) => {
   const pathName = usePathname();
   return (
     <Link

@@ -1,14 +1,10 @@
 "use client";
 
+import { PaginationType } from "@/types";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
-interface Pagination {
-  totalPages: number;
-  currentPage: number;
-}
-
-const Pagination = ({ totalPages, currentPage }: Pagination) => {
+const Pagination = ({ totalPages, currentPage }: PaginationType) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   //   const currentPage = Number(searchParams.get("page")) || 1;
@@ -20,7 +16,7 @@ const Pagination = ({ totalPages, currentPage }: Pagination) => {
   };
 
   return (
-    <div className="flex gap-4">
+    <div className="flex justify-center items-center h-[40px] gap-4">
       <Link
         href={createPageURL(currentPage - 1)}
         className={
@@ -37,7 +33,7 @@ const Pagination = ({ totalPages, currentPage }: Pagination) => {
             <span
               className={
                 currentPage === page
-                  ? "bg-white text-black font-bold border-2 rounded-[50%] px-2 h-4 "
+                  ? "bg-white text-black font-bold border-2 rounded-[50%] px-1  "
                   : ""
               }
             >

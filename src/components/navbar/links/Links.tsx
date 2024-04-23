@@ -3,27 +3,17 @@ import { useState } from "react";
 import styles from "./links.module.css";
 import NavLink from "./navLink/NavLink";
 import Image from "next/image";
+import { LinkItem } from "@/types";
 
-
-interface LinkItem {
-    title: string;
-    path: string;
-  }
-
-const links: LinkItem[] = [
-  { title: "HomePage", path: "/" },
-  { title: "Characters", path: "/characterList" },
-];
+const links: LinkItem[] = [{ title: "HomePage", path: "/" }];
 
 const Links = () => {
   const [open, setOpen] = useState(false);
 
-
   return (
     <div className={styles.container}>
       <div className={styles.links}>
-     
-       {links.map((link) => (
+        {links.map((link) => (
           <NavLink item={link} key={link.title} />
         ))}
       </div>

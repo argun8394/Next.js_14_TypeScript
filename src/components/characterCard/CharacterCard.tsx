@@ -4,7 +4,7 @@ import styles from "./characterCard.module.css";
 const CharacterCard = (character: any) => {
   return (
     <div className="mb-4 relative hover:opacity-40 rounded-lg">
-      <Link href={`/characterList/${character.id}`}>
+      <Link href={`/character/${character.id}`}>
         <div className={styles.imgContainer}>
           <Image
             src={`${character?.thumbnail.path}.${character?.thumbnail.extension}`}
