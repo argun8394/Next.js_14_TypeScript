@@ -23,33 +23,41 @@ export default function CharacterList({
 
   const nameStartsWith = searchParams?.nameStartsWith || "A";
   const currentPage = Number(searchParams?.page) || 1;
-  const limit = Number(searchParams?.limit) || 18;
+  const limit = Number(searchParams?.limit) || 10;
   const offset = (currentPage - 1) * limit;
   // const totalPages = 2;
 
   // let total = null;
 
   const getData = async () => {
-    try {
-      setLoading(true);
-      const url = `https://gateway.marvel.com/v1/public/characters?ts=1&nameStartsWith=${nameStartsWith}&offset=${offset}&limit=${limit}&apikey=3579453ac950b98ceed0d384978790d4&hash=d578505f73327bda014280c1f938d0d5`;
-
-      const res = await axios.get(url);
-      // console.log(res.data);
-
-      if (res) {
-        const { results, total } = res.data.data;
-        setCharacters(results || []);
-        setTotalPages(Math.ceil(total / limit));
-        console.log(res.data.data.total);
-        console.log(results);
-      }
-    } catch (err) {
-      console.log("Failed to fetch data");
-    } finally {
-      setLoading(false);
-    }
+    const res = await axios.get("http://localhost:3000/api/characterList", {
+      params: { offset },
+    });
+    setCharacters(res.data.data.results);
+    setTotalPages(Math.ceil(res.data.data.total / limit));
   };
+
+  // const getData = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const url = `https://gateway.marvel.com/v1/public/characters?ts=1&nameStartsWith=${nameStartsWith}&offset=${offset}&limit=${limit}&apikey=3579453ac950b98ceed0d384978790d4&hash=d578505f73327bda014280c1f938d0d5`;
+
+  //     const res = await axios.get(url);
+  //     // console.log(res.data);
+
+  //     if (res) {
+  //       const { results, total } = res.data.data;
+  //       setCharacters(results || []);
+  //       setTotalPages(Math.ceil(total / limit));
+  //       console.log(res.data.data.total);
+  //       console.log(results);
+  //     }
+  //   } catch (err) {
+  //     console.log("Failed to fetch data");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   useEffect(() => {
     setTimeout(() => getData(), 1000);
