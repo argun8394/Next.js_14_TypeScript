@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import Pagination from "@/components/pagination/Pagination";
 import Search from "@/components/search/Search";
 import { Character } from "@/types";
+import Loading from "@/components/loading/Loading";
 
 export default function Home({
   searchParams,
@@ -48,7 +49,7 @@ export default function Home({
 
   return (
     <div className="flex flex-col justify-center items-center gap-6">
-      {loading && <div className="text-gray-500">Loading...</div>}
+      {loading && <Loading />}
       {!loading && characters.length > 0 && (
         <div className={styles.container}>
           <Search />

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { Detail, CharacterDetailProps } from "@/types";
+import Loading from "@/components/loading/Loading";
 
 export default function CharacterDetail({ params }: CharacterDetailProps) {
   const [character, setCharacter] = useState<Detail>();
@@ -29,7 +30,7 @@ export default function CharacterDetail({ params }: CharacterDetailProps) {
 
   return (
     <div className="flex flex-col justify-center items-center gap-5 ">
-      {loading && <div>Loading........</div>}
+      {loading && <Loading />}
       {!loading && character && (
         <div className="flex flex-col justify-center items-center gap-5 font-bold text-xl p-1">
           <div className="">
