@@ -1,6 +1,11 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Neredekal.com_Case_Study
+* live link of the project (https://neredekal-case-study.vercel.app/ )
+  
+* Next.js_14
+* Axios
+* js-md5
+* Tailwind
 
-## Getting Started
 
 First, run the development server:
 
