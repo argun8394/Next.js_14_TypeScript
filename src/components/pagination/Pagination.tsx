@@ -1,17 +1,28 @@
 "use client";
-
 import { PaginationType } from "@/types";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
-const Pagination = ({ totalPages, currentPage }: PaginationType) => {
+const Pagination = ({
+  totalPages,
+  currentPage,
+  setDynamicLimit,
+}: PaginationType) => {
+  const [selectedLimit, setSelectedLimit] = useState(0);
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  let params = new URLSearchParams(searchParams);
 
   const createPageURL = (pageNumber: number) => {
-    const params = new URLSearchParams(searchParams);
+    params = new URLSearchParams(searchParams);
     params.set("page", pageNumber.toString());
     return `${pathname}?${params.toString()}`;
+  };
+
+  const handleLimitChange = (e: any) => {
+    const newLimit = e.target.value;
+    setDynamicLimit(newLimit);
   };
 
   return (
@@ -54,16 +65,19 @@ const Pagination = ({ totalPages, currentPage }: PaginationType) => {
       >
         Next
       </Link>
-      {/* <select
+      <select
         value={selectedLimit}
         onChange={handleLimitChange}
-        className="border border-gray-300 rounded-md px-2 py-1"
+        className="text-black border border-gray-300 rounded-md px-1 py-1"
       >
-        <option value="5">5</option>
+        <option value="limit" disabled>
+          Select Limit
+        </option>
         <option value="10">10</option>
         <option value="15">15</option>
         <option value="20">20</option>
-      </select> */}
+        <option value="25">25</option>
+      </select>
     </div>
   );
 };

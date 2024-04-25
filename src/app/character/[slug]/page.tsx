@@ -28,16 +28,17 @@ export default function CharacterDetail({ params }: CharacterDetailProps) {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-5">
+    <div className="flex flex-col justify-center items-center gap-5 ">
       {loading && <div>Loading........</div>}
       {!loading && character && (
-        <div>
+        <div className="flex flex-col justify-center items-center gap-5 font-bold text-xl p-1">
           <div className="">
             <Image
               src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
               alt=""
               width={500}
               height={500}
+              className="rounded-lg"
             />
           </div>
           <h2>{character.name}</h2>
