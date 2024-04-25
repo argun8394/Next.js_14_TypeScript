@@ -7,7 +7,6 @@ import { usePathname, useSearchParams } from "next/navigation";
 const Pagination = ({ totalPages, currentPage }: PaginationType) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  //   const currentPage = Number(searchParams.get("page")) || 1;
 
   const createPageURL = (pageNumber: number) => {
     const params = new URLSearchParams(searchParams);
@@ -25,7 +24,6 @@ const Pagination = ({ totalPages, currentPage }: PaginationType) => {
       >
         Prev
       </Link>
-
       {[currentPage - 2, currentPage - 1, currentPage]
         .filter((page) => page > 0)
         .map((page) => (
@@ -33,7 +31,7 @@ const Pagination = ({ totalPages, currentPage }: PaginationType) => {
             <span
               className={
                 currentPage === page
-                  ? "bg-white text-black font-bold border-2 rounded-[50%] px-1  "
+                  ? "flex justify-center items-center bg-white text-black font-bold border-2 rounded-[50%] px-2  "
                   : ""
               }
             >
@@ -41,7 +39,6 @@ const Pagination = ({ totalPages, currentPage }: PaginationType) => {
             </span>
           </Link>
         ))}
-
       {[currentPage + 1, currentPage + 2]
         .filter((page) => page <= totalPages)
         .map((page) => (
@@ -49,7 +46,6 @@ const Pagination = ({ totalPages, currentPage }: PaginationType) => {
             <span>{page}</span>
           </Link>
         ))}
-
       <Link
         href={createPageURL(currentPage + 1)}
         className={
@@ -58,6 +54,16 @@ const Pagination = ({ totalPages, currentPage }: PaginationType) => {
       >
         Next
       </Link>
+      {/* <select
+        value={selectedLimit}
+        onChange={handleLimitChange}
+        className="border border-gray-300 rounded-md px-2 py-1"
+      >
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+      </select> */}
     </div>
   );
 };

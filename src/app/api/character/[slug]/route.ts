@@ -9,10 +9,11 @@ export const GET = async (req: NextRequest, context:any) => {
   try {    
     const offset:any =  null ;
     const limit:any =  null ;
+    const nameStartsWith = '' ;
 
     const characterId = Number(params.slug)
    
-    const data = await getData(offset,limit,characterId);
+    const data = await getData(nameStartsWith,offset,limit,characterId);
     return NextResponse.json(data, { status: 200 });
   } catch (error: any) {
     return new Response(`Error: ${error.message}`, { status: 400 });
