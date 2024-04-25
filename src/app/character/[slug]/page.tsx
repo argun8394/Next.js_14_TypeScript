@@ -35,7 +35,7 @@ export default function CharacterDetail({ params }: CharacterDetailProps) {
         <div className="flex flex-col justify-center items-center gap-5 font-bold text-xl p-1">
           <div className="">
             <Image
-              src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+              src={`${character.thumbnail?.path}.${character.thumbnail?.extension}`}
               alt=""
               width={500}
               height={500}
