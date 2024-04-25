@@ -43,7 +43,7 @@ export default function CharacterDetail({ params }: CharacterDetailProps) {
             />
           </div>
           <h2>{character.name}</h2>
-          <p>{character.description}</p>
+          <p className="w-[70%] font-[300] text-sm ">{character.description}</p>
         </div>
       )}
     </div>
