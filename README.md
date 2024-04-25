@@ -2,9 +2,12 @@
 * live link of the project (https://neredekal-case-study.vercel.app/ )
   
 * Next.js_14
+*TypeScript
 * Axios
 * js-md5
 * Tailwind
+
+* Marvel API
 
 
 First, run the development server:
