@@ -11,9 +11,9 @@ if (process.env.NODE_ENV === "development") {
   API_PUBLIC_KEY = process.env.API_PUBLIC_KEY_DEV ?? "";
   API_PRIVATE_KEY = process.env.API_PRIVATE_KEY_DEV ?? "";
 } else {
-  API_BASE_URL = process.env.API_BASE_URL_DEV_PROD ?? "";
-  API_PUBLIC_KEY = process.env.API_PUBLIC_KEY_DEV_PROD ?? "";
-  API_PRIVATE_KEY = process.env.API_PRIVATE_KEY_DEV_PROD ?? "";
+  API_BASE_URL = process.env.API_BASE_URL_PROD ?? "";
+  API_PUBLIC_KEY = process.env.API_PUBLIC_KEY_PROD ?? "";
+  API_PRIVATE_KEY = process.env.API_PRIVATE_KEY_PROD ?? "";
 }
 
 const getTimeStamp = () => Date.now().toString();
