@@ -27,7 +27,7 @@ export default function Home({
   const getData = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:3000/api/character", {
+      const res = await axios.get("/api/character", {
         params: { offset, limit, nameStartsWith },
       });
       setCharacters(res.data.data.results);

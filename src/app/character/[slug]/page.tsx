@@ -15,7 +15,7 @@ export default function CharacterDetail({ params }: CharacterDetailProps) {
     setLoading(true);
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/character/${slug}`
+        `/api/character/${slug}`
       );
       setCharacter(res.data.data.results[0]);
     } catch (error) {
