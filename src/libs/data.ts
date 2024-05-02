@@ -7,13 +7,23 @@ let API_PUBLIC_KEY = "";
 let API_PRIVATE_KEY = "";
 
 if (process.env.NODE_ENV === "development") {
-  API_BASE_URL = process.env.API_BASE_URL_DEV ?? "";
-  API_PUBLIC_KEY = process.env.API_PUBLIC_KEY_DEV ?? "";
-  API_PRIVATE_KEY = process.env.API_PRIVATE_KEY_DEV ?? "";
+  API_BASE_URL =
+    process.env.API_BASE_URL_DEV ??
+    "https://gateway.marvel.com/v1/public/characters";
+  API_PUBLIC_KEY =
+    process.env.API_PUBLIC_KEY_DEV ?? "3579453ac950b98ceed0d384978790d4";
+  API_PRIVATE_KEY =
+    process.env.API_PRIVATE_KEY_DEV ??
+    "fd943bb74f84c23a5fecee35a8597981cf8600bd";
 } else {
-  API_BASE_URL = process.env.API_BASE_URL_DEV_PROD ?? "";
-  API_PUBLIC_KEY = process.env.API_PUBLIC_KEY_DEV_PROD ?? "";
-  API_PRIVATE_KEY = process.env.API_PRIVATE_KEY_DEV_PROD ?? "";
+  API_BASE_URL =
+    process.env.API_BASE_URL_DEV_PROD ??
+    "https://gateway.marvel.com/v1/public/characters";
+  API_PUBLIC_KEY =
+    process.env.API_PUBLIC_KEY_DEV_PROD ?? "3579453ac950b98ceed0d384978790d4";
+  API_PRIVATE_KEY =
+    process.env.API_PRIVATE_KEY_DEV_PROD ??
+    "fd943bb74f84c23a5fecee35a8597981cf8600bd";
 }
 
 const getTimeStamp = () => Date.now().toString();
